@@ -143,12 +143,12 @@ def get_traindata_and_targetdata(datasetsize, qubitno, backend):
     x_data = []
     y_data = []
     for i in range(datasetsize):
-        x_element, y_element = get_x_and_y_element(qubitno=qubitno, depth=random.randint(1,10), backend=backend)
+        x_element, y_element = get_x_and_y_element(qubitno=qubitno, depth=random.randint(8,16), backend=backend)
         x_data.append(x_element)
         y_data.append(y_element)
         
         if(i%1000 == 0):
-            print("Iteration", i)
+            print("Iteration", i+1)
         
     max_length = max(len(row) for row in x_data)
     x_data = np.array([np.pad(row, (0, max_length-len(row))) for row in x_data])
