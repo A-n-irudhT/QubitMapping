@@ -87,6 +87,18 @@ def get_cnot_count(qc, layout, backend):
     l = list(data.values())
     return l[0]
 
+def get_circuit_from_x(x, backend):
+    qc = QuantumCircuit(5,5)
+    
+    x = np.reshape(x, (-1,2))
+    dimension = np.shape(x)[0]
+    for i in range(dimension):
+        if(x[i,0] != 0 or x[i,1] != 0):
+            qc.cx(x[i,0], x[i,1])
+        else:
+            break
+    return qc
+
 def get_training_element(qc):
     gatedata = []
     for gate in qc.data:
